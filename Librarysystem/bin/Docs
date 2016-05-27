@@ -1,0 +1,41 @@
+static void searchByName(String bName) {
+
+		Boolean found = false;
+		try {
+			if (noOfBooksIssued >= MAXBOOKS) {
+
+				throw new MaxBookIssuedException();
+			}
+		
+		for (int i = 0; i < book.size(); i++) {
+			try {
+				if (book.get(i).getBookName().equalsIgnoreCase(bName)) {
+					int c = book.get(i).getCount();
+					found = true;
+					if (c == 0)
+						throw new BookIssueException();
+
+					noOfBooksIssued++;
+					c--;
+					book.get(i).setCount(c);
+					myBooks.add(book.get(i).getBookName());
+				}
+
+			} catch (BookIssueException e) {
+				System.out.println("");
+
+			}
+
+		}
+		try {
+			if (found == false)
+				throw new NoBookFoundException();
+		} catch (NoBookFoundException e) {
+
+			System.out.println("");
+		}
+} catch (MaxBookIssuedException e) {
+			System.out.println("");
+
+		}
+	}
